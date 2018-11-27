@@ -25,9 +25,9 @@ without using the intended technique.
 Remember the goal of these exercises is not to solve the problems, but to learn 
 how and when to use the myriad of troubleshooting techniques available. Given 
 the inherent complexity that comes with a combined work, all of these techniques 
-have their time and place when working on a rich application like ImageJ.
+have their time and place when working on a rich any application.
 
-# What not to do: print statements
+## What not to do: print statements
 For many developers, the first tool in their debugging toolbox is the print statement. 
 Print statements are easy to lean on as a safety crutch: you don't need any special 
 knowledge to use them, and they often work to answer common questions (e.g. "why is this 
@@ -39,17 +39,18 @@ However, there are critical drawbacks to trying to debug via print statement:
 your code and re-launch your application.
 * They are part of the code. Adding print statements changes line numbers, causes git to pick 
 up modifications to the source code, and can even affect performance and/or behavior.
-* They are limited. Even the most basic breakpoint and expression evaluation in Eclipse debug 
+* They are limited. Even the most basic breakpoint and expression evaluation in your IDE debug 
 mode gives you vastly more power and flexibility over print statements.
 * Learning to use debugging tools is, understandably, a burden: it's "one more thing" to learn 
-as a developer. But if you want to develop ImageJ plugins, you will almost certainly run into cases where debugging is necessary. So you may as well start familiarizing yourself with the tools now, gaining skills and perspectives that will serve you well throughout your career.
+as a developer. But if you want to be a developer, you will almost certainly run into cases where 
+debugging is necessary. So you may as well start familiarizing yourself with the tools now, 
+gaining skills and perspectives that will serve you well throughout your career.
 
-# Using this guide
+## Using this guide
 The goal of these exercises is not to solve the problems, but to build up your toolbox of 
-troubleshooting techniques and develop your intuition for when to apply each technique. To 
-keep exercises simple and focused, most do not explicitly use ImageJ. But once you learn 
-how to debug an external Java application, you will have the knowledge to apply any of 
-these techniques to a rich, and complex, application like ImageJ.
+troubleshooting techniques and develop your intuition for when to apply each technique. Once 
+you learn how to debug a Java application, you will have the knowledge to apply any of 
+these techniques to any rich and complex application.
 
 Because this project is intended to help new developers practice troubleshooting skills, 
 you may find these examples contrived - indeed, they are. Exercises are kept simple and 
@@ -64,8 +65,7 @@ control over, or access to the source code.
 Changing the source code to actually fix the bugs is outside the scope of this guide, 
 but motivated users are of course welcome to do so for practice.
 
-If at any time you need to revert changes to the imagej-troubleshooting repository, 
-you can always do so via the command:
+If at any time you need to revert changes, you can always do so via the command:
 
 ```
 git reset --hard origin/master
@@ -86,10 +86,10 @@ Breakpoints are a fundamental tool of debugging. They provide a way to instruct 
 execution when a certain line of code is encountered, providing a chance to explore actively 
 running code.
 
-To get started in this exercise, open up the source file - E1BasicBreakpoints - and run it to 
-get an idea of what's going on. We should see a simple stack trace:
+To get started in this exercise, open up the source file ``net.imagej.trouble.visible.E1BasicBreakpoints``, and 
+run it to get an idea of what's going on. We should see a simple stack trace:
 
-*E1StackTrace.png*
+![E1 Basic breakpoints](./images/e1basicbreakpoints.png "E1 Basic Breakpoints")
 
 Stack traces are a common starting point for debugging, as they are typically automatically 
 produced when something goes wrong that the program was not prepared to handle. Java programs 
