@@ -13,7 +13,7 @@
  * #L%
  */
 
-package net.imagej.trouble.hidden;
+package nl.han.ica.dea.debugging.hidden;
 
 import java.util.ArrayList;
 import java.util.HashSet;

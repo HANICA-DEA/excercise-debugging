@@ -13,10 +13,10 @@
  * #L%
  */
 
-package net.imagej.trouble.visible;
+package nl.han.ica.dea.debugging.visible;
 
-import net.imagej.trouble.hidden.ObjectAnalyzer;
-import net.imagej.trouble.hidden.ObjectMaker;
+import nl.han.ica.dea.debugging.hidden.ObjectAnalyzer;
+import nl.han.ica.dea.debugging.hidden.ObjectMaker;
 
 /**
  * Exercise 3: Using conditional breakpoints to avoid unnecessary debugging

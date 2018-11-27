@@ -13,9 +13,9 @@
  * #L%
  */
 
-package net.imagej.trouble.visible;
+package nl.han.ica.dea.debugging.visible;
 
-import net.imagej.trouble.hidden.MathDoer;
+import nl.han.ica.dea.debugging.hidden.MathDoer;
 
 /**
  * Exercise 5: Identifying problematic changes in a code's history, when

@@ -13,7 +13,7 @@
  * #L%
  */
 
-package net.imagej.trouble.hidden;
+package nl.han.ica.dea.debugging.hidden;
 
 /**
  * STOP LOOKING AT THIS CLASS!! IT'S OFF LIMITS!

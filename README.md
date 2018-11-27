@@ -78,7 +78,7 @@ git reset --hard origin/master
 **Goals**
 
 * Interpret a stack trace
-* Practice setting breakpoints in Eclipse
+* Practice setting breakpoints in IntelliJ/Eclipse
 * Use the Variables window to inspect variable values
 * Use the navigation commands to execute code in Debug mode
 
@@ -86,10 +86,10 @@ Breakpoints are a fundamental tool of debugging. They provide a way to instruct 
 execution when a certain line of code is encountered, providing a chance to explore actively 
 running code.
 
-To get started in this exercise, open up the source file ``net.imagej.trouble.visible.E1BasicBreakpoints``, and 
+To get started in this exercise, open up the source file ``E1BasicBreakpoints``, and 
 run it to get an idea of what's going on. We should see a simple stack trace:
 
-![E1 Basic breakpoints](./images/e1basicbreakpoints.png "E1 Basic Breakpoints")
+![E1 Basic breakpoints](images/e1.png "E1 Basic Breakpoints")
 
 Stack traces are a common starting point for debugging, as they are typically automatically 
 produced when something goes wrong that the program was not prepared to handle. Java programs 
@@ -106,15 +106,15 @@ was null at that point - which would be the actual root cause of the exception.
 
 To investigate further, try to complete the following debugging steps:
 
-1. Set a breakpoint in the main method, before makeAThing is called
-2. Debug the file as a Java application
-3. When the breakpoint is encountered, step in to the makeAThing method
+1. Set a breakpoint in the main method, before ``makeAThing`` is called
+2. Debug ``E1BasicBreakpoints.main()``.
+3. When the breakpoint is encountered, step in to the ``makeAThing`` method
 4. step over the line constructing a new Object
-5. step out of the makeAThing method
+5. step out of the ``makeAThing`` method
 6. In the Variables window, look at the value of the Object variable
 7. 'resume' execution until the program completes
 
-Now that you've walked through the program, do you know why we got a `NullPointerException`?
+Now that you've walked through the program, do you know why we got a ``NullPointerException``?
 
 **Takeaway**
 
@@ -136,34 +136,37 @@ statements in Java syntax resolving to a single value (essentially - one line of
 these changes in your program's code and recompiling, in Debug mode we can dynamically evaluate any 
 expression on-demand, without changing the source.
 
-Start by opening the E2EffectiveExpressions source and running it. Like the previous exercise, we have a 
+Start by opening the ``E2EffectiveExpressions`` source and running it. Like the previous exercise, we have a 
 stack trace to start from:
 
-*E2StackTrace.png*
+![E2 Effective expressions](images/e2.png "E2 Effective expressions")
+
 
 Try setting a breakpoint on the conditional line:
 
 ```
-1 if (index < 0 || index >= list.size()) {
+49 |     if (index < 0 || index >= list.size()) {
 ```
 
 Try debugging now, using Resume any time a breakpoint is encountered. How many times do you hit a breakpoint?
 
-
-Since we are only interested in the processElementAtIndex method when a problem actually occurs, 
+Since we are only interested in the ``processElementAtIndex`` method when a problem actually occurs, 
 let's try something different:
 
-1. From the Breakpoints window in the Debug perspective, delete the old breakpoint
-2. Now use the Add Java Exception Breakpoint button to add a breakpoint to 
+1. In the Debug window, select ``View Brakepoint``. You should now see the following window
+
+![E2 View brakepoints](images/e2-view-brakepoint.png "E2 View Brakepoints")
+
+2. Now add a new ``Java Exception Breakpoint`` by selecting the ``+`` and selecting 
 `IllegalArgumentException`
 3. Debug the program. When it stops, inspect the Variables window.
-
 
 At this point, we know there is a problem accessing the ``99999th`` element of the list, but 
 the variables window doesn't tell us exactly what the problem is. We can manually expand 
 and explore the list variable - but given its size that could be cumbersome.
 
 Instead, let's use expressions. If it's not already visible, open the 
+
 *Window > Show View > Expressions* view.
 
 In this view, we can add any number of Java expressions to evaluate. We can call 

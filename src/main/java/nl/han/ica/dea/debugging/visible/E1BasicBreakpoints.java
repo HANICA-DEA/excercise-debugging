@@ -13,7 +13,7 @@
  * #L%
  */
 
-package net.imagej.trouble.visible;
+package nl.han.ica.dea.debugging.visible;
 
 /**
  * Exercise 1: Setting breakpoints, stepping through code, and viewing variables

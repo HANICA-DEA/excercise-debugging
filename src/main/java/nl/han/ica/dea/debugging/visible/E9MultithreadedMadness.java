@@ -13,7 +13,7 @@
  * #L%
  */
 
-package net.imagej.trouble.visible;
+package nl.han.ica.dea.debugging.visible;
 
 import org.scijava.Context;
 import org.scijava.thread.ThreadService;

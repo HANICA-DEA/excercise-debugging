@@ -13,12 +13,12 @@
  * #L%
  */
 
-package net.imagej.trouble.visible;
+package nl.han.ica.dea.debugging.visible;
 
 import org.scijava.command.Command;
 import org.scijava.plugin.Plugin;
 
-import net.imagej.trouble.hidden.NotALoop;
+import nl.han.ica.dea.debugging.hidden.NotALoop;
 
 /**
  * Exercise 6: Identifying the location of problematic code when applications
@@ -30,7 +30,6 @@ import net.imagej.trouble.hidden.NotALoop;
 	menuPath = "Plugins>Troubleshooting>E6 - Start Looping")
 public class E6SleuthingSilence implements Command {
 
-	@Override
 	public void run() {
 		// Lets do some looping.. or not?
 

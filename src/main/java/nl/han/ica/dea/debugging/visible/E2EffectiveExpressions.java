@@ -13,11 +13,11 @@
  * #L%
  */
 
-package net.imagej.trouble.visible;
+package nl.han.ica.dea.debugging.visible;
 
 import java.util.List;
 
-import net.imagej.trouble.hidden.ObjectMaker;
+import nl.han.ica.dea.debugging.hidden.ObjectMaker;
 
 /**
  * Exercise 2: Using the Expression Window in the Debug perspective.

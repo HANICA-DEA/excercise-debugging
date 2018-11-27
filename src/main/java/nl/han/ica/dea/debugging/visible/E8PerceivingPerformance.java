@@ -13,9 +13,9 @@
  * #L%
  */
 
-package net.imagej.trouble.visible;
+package nl.han.ica.dea.debugging.visible;
 
-import net.imagej.trouble.hidden.StuffDoer;
+import nl.han.ica.dea.debugging.hidden.StuffDoer;
 
 /**
  * Exercise 8: Monitoring performance of methods in real time.
