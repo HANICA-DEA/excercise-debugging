@@ -89,7 +89,7 @@ running code.
 To get started in this exercise, open up the source file ``E1BasicBreakpoints``, and 
 run it to get an idea of what's going on. We should see a simple stack trace:
 
-![E1 Basic breakpoints](images/e1.png "E1 Basic Breakpoints")
+![E1 Stack trace](images/e1.png "E1 Stack trace")
 
 Stack traces are a common starting point for debugging, as they are typically automatically 
 produced when something goes wrong that the program was not prepared to handle. Java programs 
@@ -122,30 +122,25 @@ Now that you've walked through the program, do you know why we got a ``NullPoint
 * The Debug view allows line-by-line execution of code and inspection of variable values to help us 
 pinpoint errors
 
-## Exercise 2: Expressions
+## Exercise 2: Exceptions
 
 **Goals**
 
 * Set breakpoints on exception creation
-* Use the Expressions window to evaluate code at runtime
 
-Although breakpoints allow us a chance to peek inside running code, many times when debugging you'll find 
-that you're missing a piece of information not provided by the current code - perhaps you'd like to call a 
-utility method, or construct a new object temporarily. All of these operations are Java expressions - 
-statements in Java syntax resolving to a single value (essentially - one line of code). Instead of making 
-these changes in your program's code and recompiling, in Debug mode we can dynamically evaluate any 
-expression on-demand, without changing the source.
+Although breakpoints allow us a chance to peek inside running code, it is sometimes unclear where to start 
+looking. Many times you'll find yourself replacing breakpoints until you find the correct spot to start 
+debugging.
 
-Start by opening the ``E2EffectiveExpressions`` source and running it. Like the previous exercise, we have a 
+Start by opening the ``E2ExceptionCreation`` source and running it. Like the previous exercise, we have a 
 stack trace to start from:
 
-![E2 Effective expressions](images/e2.png "E2 Effective expressions")
-
+![E2 Stack trace](images/e2.png "E2 Stack trace")
 
 Try setting a breakpoint on the conditional line:
 
 ```
-49 |     if (index < 0 || index >= list.size()) {
+49 |    if (index < 0 || index >= list.size()) {
 ```
 
 Try debugging now, using Resume any time a breakpoint is encountered. How many times do you hit a breakpoint?
@@ -153,9 +148,9 @@ Try debugging now, using Resume any time a breakpoint is encountered. How many t
 Since we are only interested in the ``processElementAtIndex`` method when a problem actually occurs, 
 let's try something different:
 
-1. In the Debug window, select ``View Brakepoint``. You should now see the following window
+1. In the Debug window, select _View Breakpoint_. You should now see the following dialog
 
-![E2 View brakepoints](images/e2-view-brakepoint.png "E2 View Brakepoints")
+![E2 View breakpoints](images/e2-view-breakpoint.png "E2 View Breakpoints")
 
 2. Now add a new ``Java Exception Breakpoint`` by selecting the ``+`` and selecting 
 `IllegalArgumentException`
@@ -165,48 +160,30 @@ At this point, we know there is a problem accessing the ``99999th`` element of t
 the variables window doesn't tell us exactly what the problem is. We can manually expand 
 and explore the list variable - but given its size that could be cumbersome.
 
-Instead, let's use expressions. If it's not already visible, open the 
-
-*Window > Show View > Expressions* view.
-
-In this view, we can add any number of Java expressions to evaluate. We can call 
-methods from, and on, any variables and classes visible from the current scope.
-
-**Warning**: if you evaluate expressions that change the state of variables, for example 
-``List.add``, then those changes will persist. Sometimes you do legitimately need to 
-alter the state of variables while debugging (for example, to force the conditions 
-in which a bug appears). Just be aware that you could also be introducing problematic 
-behavior when evaluating expressions.
-
-To complete this exercise:
-
-1. Write an expression that calls the ``size()`` method of our list.
-2. Write a 2nd expression that evaluates to the value of the ``index`` variable
-
-Once you've evaluated these expressions, can you tell what went wrong in the program?
+Can you tell what went wrong in the program?
 
 **Takeaways**
 
-* Setting breakpoints on exceptions avoids unnecessary breakpoint hits (and can be useful when we aren't sure where to set the breakpoint)
-* The Expressions window of the Debug view allows us to evaluate arbitrary Java expressions without modifying our source code
+* Setting breakpoints on exceptions avoids unnecessary breakpoint hits (and can be useful when we 
+aren't sure where to set the breakpoint)
 
 ## Exercise 3: Conditional breakpoints
 
 **Goals**
 
 * Create a breakpoint that triggers after a specified number of hits
-* Create a breakpoint that triggers when a certain condition is true
+* Create a breakpoint that triggers when a certain condition is ``true``
 
 Breakpoints trigger every time the corresponding line would be executed, which may be 
 undesirable for repeated code blocks. It may be enough to carefully consider the breakpoint 
-placement - on an exception, or within a conditional block. But when these options aren't 
+placement - on an exception, or within a conditional block. But when these options are not 
 available, we can make our breakpoints more powerful by triggering only when there's 
 something of interest to see.
 
 Start by opening the ``E3ConditionalCrisis`` source and running it. This time our console 
 output looks a bit different:
 
-*E3StackTrace.png*
+![E3 Stack trace](images/e3.png "E2 Stack trace ")
 
 In addition to the exception stack trace, the program itself appears to have found an 
 invalid object, causing the processing to go unfinished. Although we could set a 
@@ -215,28 +192,34 @@ happening after the more interesting part of the program - the loop. As we learn
 in exercise 2, breakpoints in code that is called repeatedly are annoying, so let's 
 see what we can find by attaching conditions to our breakpoint.
 
-First set a breakpoint on the line after the everythingIsOK assignment:
+First set a breakpoint on the line after the ``everythingIsOK`` assignment:
 
 ```
-1 everythingIsOK = ObjectAnalyzer.processElementAtIndex(myArray, i);
-2 i++;
+39 |    everythingIsOK = ObjectAnalyzer.processElementAtIndex(myArray, i);
+40 |    i++;
 ```
 
 Then try the following:
 
-1. Open the Breakpoints window
-2. Right-click our breakpoint and select Breakpoint Properties...
-3. Check the Hit Count box and set it to the object number printed in the error message.
+1. Open the _Breakpoints_ dialog
+2. Select the breakpoint from above.
+3. Check the _Pass count_ checkbox and set it to the object number printed in the error message.
 4. Try debugging
 
 Was there a problem with the current object when/if your breakpoint is hit?
 
-Using count-based conditional breakpoints can be very useful if the error is deterministic. In this case we need to try something different. We know the everythingIsOK flag reflects the integrity of the object at a given index - so what we really want to use here is a breakpoint that stops in the loop when the everythingIsOK flag is set to false. Fortunately, breakpoints have an optional "Conditional" flag - where we can enter any Java statement that resolves to a boolean value. Try it out:
+Using count-based conditional breakpoints can be very useful if the error is deterministic. 
+In this case it will not work, so we need to try something different. 
 
-1. Open the Breakpoints window again
-2. Open the properties of our breakpoint
-3. Uncheck the Hit Count box
-4. Check the Conditional box, and "Suspend when 'true'"
+We know the ``everythingIsOK`` flag reflects the integrity of the object at a given index 
+- so what we really want to use here is a breakpoint that stops in the loop when the 
+``everythingIsOK`` flag is set to ``false``. Fortunately, breakpoints have an optional 
+_Condition_ flag - where we can enter any Java statement that resolves to a boolean value. 
+Try it out:
+
+1. Open the _Breakpoints_ dialog again
+2. Uncheck the _Pass count_ checkbox
+3. Check the _Condition_ box
 5. Enter the condition we want to check
 6. Try debugging again
 
@@ -246,5 +229,5 @@ What was suspicious about the object at that index?
 
 **Takeaways**
 
-* Setting a hit count on a breakpoint is useful if problematic code is called multiple times
-* If problems appear randomly, using a conditional expressions on the breakpoint can help
+* Setting a pass count on a breakpoint is useful if problematic code is called multiple times.
+* If problems appear randomly, using a conditional expressions on the breakpoint can help.

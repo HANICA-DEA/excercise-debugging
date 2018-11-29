@@ -24,7 +24,7 @@ import nl.han.ica.dea.debugging.hidden.ObjectMaker;
  *
  * @author Mark Hiner
  */
-public class E2EffectiveExpressions {
+public class E2ExceptionCreation {
 
 	public static void main(final String... args) {
 		// Let's make a list of 100000 objects

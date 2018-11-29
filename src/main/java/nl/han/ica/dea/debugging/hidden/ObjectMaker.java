@@ -27,13 +27,13 @@ import java.util.Set;
  */
 public class ObjectMaker {
 
-	final static Set<Object> cache = new HashSet<Object>();
+	final static Set<Object> cache = new HashSet();
 
 	public static List<Object> getList(final int size) {
-		final List<Object> list = new ArrayList<Object>();
+		final List<Object> list = new ArrayList();
 
 		for (int i = 0; i < size - 1; i++) {
-			list.add(new Double(Math.random() * 100000));
+			list.add((Math.random() * 100000));
 		}
 
 		return list;

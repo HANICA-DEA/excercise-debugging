@@ -19,12 +19,12 @@ import org.scijava.Context;
 import org.scijava.thread.ThreadService;
 
 /**
- * Exercise 9: Multithreaded environments where the act of debugging itself
+ * Exercise 4: Multithreaded environments where the act of debugging itself
  * introduces errors.
  *
  * @author Mark Hiner
  */
-public class E9MultithreadedMadness {
+public class E4MultithreadedMadness {
 
 	public static void main(final String... args) {
 
@@ -77,7 +77,6 @@ public class E9MultithreadedMadness {
 			this.myValue = myValue;
 		}
 
-		@Override
 		public void run() {
 			int i = myValue ? 1 : 0;
 			int misses = 0;
