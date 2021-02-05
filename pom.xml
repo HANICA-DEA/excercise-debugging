@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>nl.han.ica.dea</groupId>
-    <artifactId>Debugging Excercise</artifactId>
+    <artifactId>debuggingexcercise</artifactId>
     <version>0.0.1</version>
 
     <name>Debugging Exercise</name>
@@ -61,6 +61,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
