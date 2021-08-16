@@ -27,10 +27,10 @@ import java.util.Set;
  */
 public class ObjectMaker {
 
-	final static Set<Object> cache = new HashSet();
+	final static Set<Object> cache = new HashSet<>();
 
 	public static List<Object> getList(final int size) {
-		final List<Object> list = new ArrayList();
+		final List<Object> list = new ArrayList<>();
 
 		for (int i = 0; i < size - 1; i++) {
 			list.add((Math.random() * 100000));
@@ -43,7 +43,7 @@ public class ObjectMaker {
 		final Object[] array = new Object[size];
 
 		for (int i = 0; i < size - 1; i++) {
-			array[i] = new Double(Math.random() * 100000);
+			array[i] = Math.random() * 100000;
 		}
 
 		array[(int) (Math.random() * (size - 1))] = null;
