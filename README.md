@@ -2,8 +2,8 @@
 This exercise is part of the DEA course at the HAN University of Applied Sciences. 
 Main subject is debugging and correctly interpreting a stacktrace.
 
-## About this excercise
-This excercise is based on the guide [ImageJ Debuggin Excerice](http://imagej.net/Debugging_Exercises), 
+## About this exercise
+This exercise is based on the guide [ImageJ Debugging Exercise](http://imagej.net/Debugging_Exercises), 
 with its companion repository [ImageJ-Troubleshooting](https://github.com/imagej/imagej-troubleshooting).
 
 Note that the source code is split into two packages:
@@ -71,7 +71,7 @@ If at any time you need to revert changes, you can always do so via the command:
 git reset --hard origin/master
 ```
 
-# Excercises
+# Exercises
 
 ## Exercise 1: Stack Traces and Breakpoints
 
@@ -87,7 +87,7 @@ execution when a certain line of code is encountered, providing a chance to expl
 running code.
 
 To get started in this exercise, open up the source file ``E1BasicBreakpoints``, and 
-run it to get an idea of what's going on. We should see a simple stack trace:
+run it to get an idea of what's going on. We should see a simple stack trace in the Console:
 
 ![E1 Stack trace](images/e1.png "E1 Stack trace")
 
@@ -108,11 +108,12 @@ To investigate further, try to complete the following debugging steps:
 
 1. Set a breakpoint in the main method, before ``makeAThing`` is called
 2. Debug ``E1BasicBreakpoints.main()``.
-3. When the breakpoint is encountered, step in to the ``makeAThing`` method
-4. step over the line constructing a new Object
-5. step out of the ``makeAThing`` method
-6. In the Variables window, look at the value of the Object variable
-7. 'resume' execution until the program completes
+3. When the breakpoint is encountered, step in to the ``makeAThing()`` method
+4. Step over the lines constructing a new Object and printing variable ``o``
+5. Step out of the ``makeAThing()`` method
+6. Step to the next line inside the ``main()`` method
+7. In the Variables window, look at the value of the Object variable ``o``
+8. Resume execution until the program completes
 
 Now that you've walked through the program, do you know why we got a ``NullPointerException``?
 
@@ -154,7 +155,7 @@ let's try something different:
 
 2. Now add a new ``Java Exception Breakpoint`` by selecting the ``+`` and selecting 
 `IllegalArgumentException`
-3. Debug the program. When it stops, inspect the Variables window.
+3. Debug the program. Resume execution until the program hits the newly created breakpoint for `IllegalArgumentException`. When it does, inspect the Variables window.
 
 At this point, we know there is a problem accessing the ``99999th`` element of the list, but 
 the variables window doesn't tell us exactly what the problem is. We can manually expand 
@@ -212,7 +213,7 @@ Using count-based conditional breakpoints can be very useful if the error is det
 In this case it will not work, so we need to try something different. 
 
 We know the ``everythingIsOK`` flag reflects the integrity of the object at a given index 
-- so what we really want to use here is a breakpoint that stops in the loop when the 
+- So what we really want to use here is a breakpoint that stops in the loop when the 
 ``everythingIsOK`` flag is set to ``false``. Fortunately, breakpoints have an optional 
 _Condition_ flag - where we can enter any Java statement that resolves to a boolean value. 
 Try it out:
