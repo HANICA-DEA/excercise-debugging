@@ -2,6 +2,8 @@
 This exercise is part of the DEA course at the HAN University of Applied Sciences. 
 Main subject is debugging and correctly interpreting a stacktrace.
 
+When you are going to import/open this project for the first time, you might notice that source files are not recognized as being source files. Consider re-importing (Maven-tab in IntelliJ and click on the two arrows that are pointing to each other in a circle) the project, it can take a few minutes to resolve all dependencies. 
+
 ## About this exercise
 This exercise is based on the guide [ImageJ Debugging Exercise](http://imagej.net/Debugging_Exercises), 
 with its companion repository [ImageJ-Troubleshooting](https://github.com/imagej/imagej-troubleshooting).
